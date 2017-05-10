@@ -58,7 +58,6 @@ const FilmPreview = props => {
 
       <Link to={`film/${film.slug}`} className="preview-link">
         <h1>{film.title}</h1>
-        <p>{film.description}</p>
         <span>Read more...</span>
         <ul className="tag-list">
           {

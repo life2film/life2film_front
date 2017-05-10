@@ -3,13 +3,14 @@ import CommentContainer from './CommentContainer';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
-import marked from 'marked';
+// import marked from 'marked';
 import { FILM_PAGE_LOADED, FILM_PAGE_UNLOADED } from '../../constants/actionTypes';
 
 const mapStateToProps = state => ({
   ...state.film,
   currentUser: state.common.currentUser
 });
+
 
 const mapDispatchToProps = dispatch => ({
   onLoad: payload =>
@@ -35,7 +36,7 @@ class Film extends React.Component {
       return null;
     }
 
-    const markup = { __html: marked(this.props.film.body, { sanitize: true }) };
+    // const markup = { __html: marked(this.props.film.body, { sanitize: true }) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.film.author.username;
     return (
@@ -57,7 +58,6 @@ class Film extends React.Component {
           <div className="row film-content">
             <div className="col-xs-12">
 
-              <div dangerouslySetInnerHTML={markup}></div>
 
               <ul className="tag-list">
                 {
