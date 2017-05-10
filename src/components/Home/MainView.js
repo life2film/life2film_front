@@ -1,4 +1,4 @@
-import ArticleList from '../ArticleList';
+import FilmList from '../FilmList';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ const YourFeedTab = props => {
   if (props.token) {
     const clickHandler = ev => {
       ev.preventDefault();
-      props.onTabClick('feed', agent.Articles.feed, agent.Articles.feed());
+      props.onTabClick('feed', agent.Films.feed, agent.Films.feed());
     }
 
     return (
@@ -27,7 +27,7 @@ const YourFeedTab = props => {
 const GlobalFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
-    props.onTabClick('all', agent.Articles.all, agent.Articles.all());
+    props.onTabClick('all', agent.Films.all, agent.Films.all());
   };
   return (
     <li className="nav-item">
@@ -56,7 +56,7 @@ const TagFilterTab = props => {
 };
 
 const mapStateToProps = state => ({
-  ...state.articleList,
+  ...state.filmList,
   tags: state.home.tags,
   token: state.common.token
 });
@@ -83,11 +83,11 @@ const MainView = props => {
         </ul>
       </div>
 
-      <ArticleList
+      <FilmList
         pager={props.pager}
-        articles={props.articles}
+        films={props.films}
         loading={props.loading}
-        articlesCount={props.articlesCount}
+        filmsCount={props.filmsCount}
         currentPage={props.currentPage} />
     </div>
   );

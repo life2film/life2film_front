@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'https://conduit.productionready.io/api';
+const API_ROOT = 'http://127.0.0.1:8000/api';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -42,39 +42,39 @@ const Tags = {
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = article => Object.assign({}, article, { slug: undefined })
-const Articles = {
+const omitSlug = film => Object.assign({}, film, { slug: undefined })
+const Films = {
   all: page =>
-    requests.get(`/articles?${limit(10, page)}`),
+    requests.get(`/films?${limit(10, page)}`),
   byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
+    requests.get(`/films?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>
-    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
+    requests.get(`/films?tag=${encode(tag)}&${limit(10, page)}`),
   del: slug =>
-    requests.del(`/articles/${slug}`),
+    requests.del(`/films/${slug}`),
   favorite: slug =>
-    requests.post(`/articles/${slug}/favorite`),
+    requests.post(`/films/${slug}/favorite`),
   favoritedBy: (author, page) =>
-    requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
+    requests.get(`/films?favorited=${encode(author)}&${limit(5, page)}`),
   feed: () =>
-    requests.get('/articles/feed?limit=10&offset=0'),
+    requests.get('/films/feed?limit=10&offset=0'),
   get: slug =>
-    requests.get(`/articles/${slug}`),
+    requests.get(`/films/${slug}`),
   unfavorite: slug =>
-    requests.del(`/articles/${slug}/favorite`),
-  update: article =>
-    requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }),
-  create: article =>
-    requests.post('/articles', { article })
+    requests.del(`/films/${slug}/favorite`),
+  update: film =>
+    requests.put(`/films/${film.slug}`, { film: omitSlug(film) }),
+  create: film =>
+    requests.post('/films', { film })
 };
 
 const Comments = {
   create: (slug, comment) =>
-    requests.post(`/articles/${slug}/comments`, { comment }),
+    requests.post(`/films/${slug}/comments`, { comment }),
   delete: (slug, commentId) =>
-    requests.del(`/articles/${slug}/comments/${commentId}`),
-  forArticle: slug =>
-    requests.get(`/articles/${slug}/comments`)
+    requests.del(`/films/${slug}/comments/${commentId}`),
+  forFilm: slug =>
+    requests.get(`/films/${slug}/comments`)
 };
 
 const Profile = {
@@ -87,7 +87,7 @@ const Profile = {
 };
 
 export default {
-  Articles,
+  Films,
   Auth,
   Comments,
   Profile,

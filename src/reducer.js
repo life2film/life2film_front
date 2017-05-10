@@ -1,5 +1,7 @@
-import article from './reducers/article';
-import articleList from './reducers/articleList';
+// import film from './reducers/film';
+// import filmList from './reducers/filmList';
+import film from './reducers/film';
+import filmList from './reducers/filmList';
 import auth from './reducers/auth';
 import { combineReducers } from 'redux';
 import common from './reducers/common';
@@ -10,8 +12,8 @@ import profileFavorites from './reducers/profileFavorites';
 import settings from './reducers/settings';
 
 export default combineReducers({
-  article,
-  articleList,
+  film,
+  filmList,
   auth,
   common,
   editor,
