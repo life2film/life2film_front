@@ -1,0 +1,22 @@
+.film-preview {
+    padding: 10px 0 10px 0;
+}
+
+.author {
+    display: inline-block;
+    font-weight: 500 !important;
+}
+
+.date {
+    color: #000000;
+    display: inline-block;
+    padding: 0 0 0 5px;
+}
+
+.preview-link {
+    font-size: 24px;
+}
+
+.preview-link:hover {
+    text-decoration: inherit !important;
+}

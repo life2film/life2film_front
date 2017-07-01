@@ -11,8 +11,8 @@ const getMiddleware = () => {
     // Enable additional logging in non-production environments.
     return applyMiddleware(promiseMiddleware, localStorageMiddleware, createLogger())
   }
-}
+};
 
-const store = createStore(reducer, composeWithDevTools(getMiddleware()))
+const store = createStore(reducer, composeWithDevTools(getMiddleware()));
 
 export default store;

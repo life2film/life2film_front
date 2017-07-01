@@ -47,10 +47,11 @@ export default (state = {}, action) => {
         currentPage: 0
       };
     case HOME_PAGE_LOADED:
+      console.log(action);
       return {
         ...state,
         pager: action.pager,
-        tags: action.payload[0].tags,
+        // tags: action.payload[0].tags,
         films: action.payload[1].films,
         filmsCount: action.payload[1].filmsCount,
         currentPage: 0,

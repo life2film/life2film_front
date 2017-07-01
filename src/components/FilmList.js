@@ -1,6 +1,7 @@
 import FilmPreview from './FilmPreview';
 import ListPagination from './ListPagination';
 import React from 'react';
+import '../assets/filmlist.css'
 
 const FilmList = props => {
   if (!props.films) {
@@ -18,7 +19,7 @@ const FilmList = props => {
   }
 
   return (
-    <div>
+    <div className="filmlist">
       {
         props.films.map(film => {
           return (

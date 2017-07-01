@@ -13,7 +13,7 @@ const tokenPlugin = req => {
   if (token) {
     req.set('authorization', `Token ${token}`);
   }
-}
+};
 
 const requests = {
   del: url =>
@@ -45,7 +45,7 @@ const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const omitSlug = film => Object.assign({}, film, { slug: undefined })
 const Films = {
   all: page =>
-    requests.get(`/films?${limit(10, page)}`),
+    requests.get(`/allfilms?${limit(10, page)}`),
   byAuthor: (author, page) =>
     requests.get(`/films?author=${encode(author)}&${limit(5, page)}`),
   byTag: (tag, page) =>
@@ -59,7 +59,7 @@ const Films = {
   feed: () =>
     requests.get('/films/feed?limit=10&offset=0'),
   get: slug =>
-    requests.get(`/films/${slug}`),
+    requests.get(`/allfilms/${slug}`),
   unfavorite: slug =>
     requests.del(`/films/${slug}/favorite`),
   update: film =>

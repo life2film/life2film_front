@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import agent from '../agent';
 import { connect } from 'react-redux';
 import { FILM_FAVORITED, FILM_UNFAVORITED } from '../constants/actionTypes';
+import '../assets/film-preview.css'
 
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
@@ -36,43 +37,38 @@ const FilmPreview = props => {
   return (
     <div className="film-preview">
       <div className="film-meta">
-        <Link to={`@${film.author.username}`}>
-          <img src={film.author.image} alt={film.author.username} />
-        </Link>
 
         <div className="info">
           <Link className="author" to={`@${film.author.username}`}>
             {film.author.username}
           </Link>
           <span className="date">
-            {new Date(film.createdAt).toDateString()}
+            ({new Date(film.createdAt).toDateString()})
           </span>
         </div>
 
         <div className="pull-xs-right">
           <button className={favoriteButtonClass} onClick={handleClick}>
-            <i className="ion-heart"></i> {film.favoritesCount}
+            <i className="ion-heart"/> {film.favoritesCount}
           </button>
         </div>
       </div>
 
+
       <Link to={`film/${film.slug}`} className="preview-link">
-        <h1>{film.title}</h1>
-        <span>Read more...</span>
-        <ul className="tag-list">
-          {
-            film.tagList.map(tag => {
-              return (
-                <li className="tag-default tag-pill tag-outline" key={tag}>
-                  {tag}
-                </li>
-              )
-            })
-          }
-        </ul>
+        {film.title.slice(0, 40)}
       </Link>
+
+        <div>
+            <video id="example_video_1_html5_api" className="vjs-tech" preload="auto" autoPlay=""
+                   data-setup="{&quot;ga&quot;: {&quot;debug&quot;: [&quot;true&quot;]}}"
+                   poster="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4.jpg" controls>
+                <source src="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4" type="video/mp4"/>
+            </video>
+        </div>
+
     </div>
   );
-}
+};
 
 export default connect(() => ({}), mapDispatchToProps)(FilmPreview);

@@ -9,7 +9,7 @@ const YourFeedTab = props => {
     const clickHandler = ev => {
       ev.preventDefault();
       props.onTabClick('feed', agent.Films.feed, agent.Films.feed());
-    }
+    };
 
     return (
       <li className="nav-item">
@@ -70,16 +70,8 @@ const MainView = props => {
     <div className="col-md-9">
       <div className="feed-toggle">
         <ul className="nav nav-pills outline-active">
-
-          <YourFeedTab
-            token={props.token}
-            tab={props.tab}
-            onTabClick={props.onTabClick} />
-
+          <YourFeedTab token={props.token} tab={props.tab} onTabClick={props.onTabClick} />
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
-
-          <TagFilterTab tag={props.tag} />
-
         </ul>
       </div>
 
