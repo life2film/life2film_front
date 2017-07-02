@@ -52,8 +52,8 @@ export default (state = {}, action) => {
         ...state,
         pager: action.pager,
         // tags: action.payload[0].tags,
-        films: action.payload[1].films,
-        filmsCount: action.payload[1].filmsCount,
+        films: action.payload[0].films,
+        filmsCount: action.payload[0].filmsCount,
         currentPage: 0,
         tab: action.tab
       };

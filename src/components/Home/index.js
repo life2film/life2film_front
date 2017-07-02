@@ -29,9 +29,9 @@ const mapDispatchToProps = dispatch => ({
 
 class Home extends React.Component {
   componentWillMount() {
-    const tab = this.props.token ? 'feed' : 'all';
+    const tab = this.props.token ? 'myfilms' : 'all';
     const filmsPromise = this.props.token ?
-      agent.Films.feed :
+      agent.Films.byAuthor :
       agent.Films.all;
 
     this.props.onLoad(tab, filmsPromise, Promise.all([agent.Tags.getAll(), filmsPromise()]));

@@ -42,12 +42,14 @@ const Tags = {
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = film => Object.assign({}, film, { slug: undefined })
+const omitSlug = film => Object.assign({}, film, { slug: undefined });
 const Films = {
   all: page =>
     requests.get(`/allfilms?${limit(10, page)}`),
-  byAuthor: (author, page) =>
-    requests.get(`/films?author=${encode(author)}&${limit(5, page)}`),
+  byAuthor: (author, page) => {
+      author = author ? author : '';
+      return requests.get(`/allfilms?author=${encode(author)}&${limit(5, page)}`)
+  },
   byTag: (tag, page) =>
     requests.get(`/films?tag=${encode(tag)}&${limit(10, page)}`),
   del: slug =>
