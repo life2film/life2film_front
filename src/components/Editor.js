@@ -55,8 +55,8 @@ class Editor extends React.Component {
     this.submitForm = ev => {
       ev.preventDefault();
       const film = {
-        title: this.props.title,
-        description: this.props.description,
+        url_image: this.props.title,
+        title: this.props.description,
         body: this.props.body,
         tagList: this.props.tagList
       };
@@ -107,7 +107,7 @@ class Editor extends React.Component {
                     <input
                       className="form-control form-control-lg"
                       type="text"
-                      placeholder="Film Title"
+                      placeholder="You tube link"
                       value={this.props.title}
                       onChange={this.changeTitle} />
                   </fieldset>
@@ -116,7 +116,7 @@ class Editor extends React.Component {
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="What's this film about?"
+                      placeholder="Write this film caption"
                       value={this.props.description}
                       onChange={this.changeDescription} />
                   </fieldset>
@@ -125,7 +125,7 @@ class Editor extends React.Component {
                     <textarea
                       className="form-control"
                       rows="8"
-                      placeholder="Write your film (in markdown)"
+                      placeholder="Write your film description"
                       value={this.props.body}
                       onChange={this.changeBody}>
                     </textarea>

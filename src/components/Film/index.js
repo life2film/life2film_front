@@ -47,11 +47,9 @@ class Film extends React.Component {
 
             <FilmMeta film={this.props.film} canModify={canModify} className="col-xs-4" />
             <h1 className="col-xs-6">{this.props.film.title}</h1>
-            <video id="example_video_1_html5_api" className="vjs-tech" preload="auto" autoPlay=""
-                   data-setup="{&quot;ga&quot;: {&quot;debug&quot;: [&quot;true&quot;]}}"
-                   poster="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4.jpg" controls>
-                <source src="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4" type="video/mp4"/>
-            </video>
+            <iframe width="420" height="315"
+                    src={this.props.film.url_image}>
+            </iframe>
 
           </div>
         </div>

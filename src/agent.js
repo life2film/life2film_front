@@ -65,9 +65,9 @@ const Films = {
   unfavorite: slug =>
     requests.del(`/films/${slug}/favorite`),
   update: film =>
-    requests.put(`/films/${film.slug}`, { film: omitSlug(film) }),
+    requests.put(`/allfilms/${film.slug}`, { film: omitSlug(film) }),
   create: film =>
-    requests.post('/films', { film })
+    requests.post('/allfilms', { film })
 };
 
 const Comments = {

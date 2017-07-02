@@ -60,11 +60,9 @@ const FilmPreview = props => {
       </Link>
 
         <div>
-            <video id="example_video_1_html5_api" className="vjs-tech" preload="auto" autoPlay=""
-                   data-setup="{&quot;ga&quot;: {&quot;debug&quot;: [&quot;true&quot;]}}"
-                   poster="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4.jpg" controls>
-                <source src="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4" type="video/mp4"/>
-            </video>
+            <iframe width="420" height="315"
+                    src={film.url_image}>
+            </iframe>
         </div>
 
     </div>
