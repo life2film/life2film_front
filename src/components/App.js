@@ -27,13 +27,30 @@ class App extends React.Component {
     }
   }
 
+  initUserData = async () => {
+    const data = await agent.Auth.current()
+    const address = data.user.wallet_address
+    let balanceData = 0
+
+    try{
+      balanceData = await agent.Waves.getBalance(address)
+    } catch (e) {
+    }
+
+    data.user = {
+      ...data.user,
+      balance: balanceData && balanceData.balance,
+    }
+    return data
+  }
+
   componentWillMount() {
     const token = window.localStorage.getItem('jwt');
     if (token) {
       agent.setToken(token);
     }
 
-    this.props.onLoad(token ? agent.Auth.current() : null, token);
+    this.props.onLoad(token ? this.initUserData() : null, token);
   }
 
   render() {

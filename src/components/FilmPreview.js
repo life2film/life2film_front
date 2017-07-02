@@ -34,6 +34,9 @@ const FilmPreview = props => {
     }
   };
 
+  const url = film.url_image.split('/')
+  const vidId = url[url.length-1]
+
   return (
     <div className="film-preview">
       <div className="film-meta">
@@ -59,12 +62,19 @@ const FilmPreview = props => {
         {film.title.slice(0, 40)}
       </Link>
 
+      <Link to={`film/${film.slug}`} className="preview-link">
         <div>
-            <iframe width="420" height="315"
-                    src={film.url_image}>
-            </iframe>
+            {/*<video id="example_video_1_html5_api" className="vjs-tech" preload="auto" autoPlay=""
+                   data-setup="{&quot;ga&quot;: {&quot;debug&quot;: [&quot;true&quot;]}}"
+                   poster="https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4.jpg" controls>
+                <source src={ film.url_image || "https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4"} type="video/mp4"/>
+            </video>*/}
+          {/*{ film.url_image &&
+            <iframe width="560" height="315" src={ film.url_image } frameborder="0" allowfullscreen></iframe>
+          }*/}
+          <img src={ `https://img.youtube.com/vi/${vidId}/0.jpg` } alt=""/>
         </div>
-
+      </Link>
     </div>
   );
 };

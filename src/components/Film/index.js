@@ -39,18 +39,53 @@ class Film extends React.Component {
     // const markup = { __html: marked(this.props.film.body, { sanitize: true }) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.film.author.username;
+
     return (
       <div className="film-page">
 
         <div className="banner">
-          <div className="container">
+          <div className="container film-container">
 
             <FilmMeta film={this.props.film} canModify={canModify} className="col-xs-4" />
-            <h1 className="col-xs-6">{this.props.film.title}</h1>
-            <iframe width="420" height="315"
-                    src={this.props.film.url_image}>
-            </iframe>
-
+            <h1 className="col-xs-6 text-lg-center film-title">{this.props.film.title}</h1>
+           {/* <video id="example_video_1_html5_api" className="vjs-tech" preload="auto" autoPlay=""
+                   data-setup="{&quot;ga&quot;: {&quot;debug&quot;: [&quot;true&quot;]}}" controls>
+                <source src={ this.props.film.url_image || "https://dcr2ej3odfzos.cloudfront.net/380197/baaai3eg.mp4" } type="video/mp4"/>
+            </video>*/}
+            {
+              this.props.film && this.props.film.url_image &&
+                <iframe width="560" height="315" src={ this.props.film.url_image } frameborder="0" allowfullscreen></iframe>
+            }
+            <div className="hits-container">
+              <div className="hits">
+                123 <i className="ion-eye"/>
+              </div>
+              <div className="donate-container">
+                {/*<div className="form-inline">*/}
+                  <fieldset className="form-group">
+                    <div className="input-group">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Coin numbers"
+                        // value={this.props.videoUrl}
+                        // onChange={this.changeVideoURL}
+                      />
+                      <div className="input-group-btn">
+                        <button
+                          className="btn pull-xs-right btn-primary"
+                          type="button"
+                          // disabled={this.props.inProgress}
+                          // onClick={this.submitForm}
+                        >
+                          Donate
+                        </button>
+                      </div>
+                    </div>
+                  </fieldset>
+                {/*</div>*/}
+              </div>
+            </div>
           </div>
         </div>
 

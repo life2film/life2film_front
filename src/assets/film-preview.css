@@ -20,3 +20,54 @@
 .preview-link:hover {
     text-decoration: inherit !important;
 }
+
+.film-meta-avatar{
+    width: 80px;
+}
+
+.comment-author-img{
+    width: 80px;
+}
+
+.film-meta{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: #fff;
+}
+
+.film-meta span {
+  margin-left: 15px !important;
+}
+
+.film-meta .btn {
+    margin-left: 15px !important;
+}
+
+.film-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.film-title{
+    margin-bottom: 45px !important;
+}
+
+
+.hits-container{
+    margin-top: 45px;
+    /*display: flex;*/
+    display: flex;
+    justify-content: space-between;
+    width: 580px;
+}
+
+.hits{
+    font-size: 20px;
+}
+
+.donate-container > .form-group{
+    /*display: flex;  */
+}

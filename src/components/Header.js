@@ -43,13 +43,14 @@ const LoggedInView = props => {
 
         <li className="nav-item">
           <Link to="editor" className="nav-link">
+            {/*<i className="ion-compose"/>&nbsp;New Post*/}
             <i className="ion-compose"></i>&nbsp;New Video
           </Link>
         </li>
 
         <li className="nav-item">
           <Link to="settings" className="nav-link">
-            <i className="ion-gear-a"></i>&nbsp;Settings
+            <i className="ion-gear-a"/>&nbsp;Settings
           </Link>
         </li>
 
@@ -57,8 +58,14 @@ const LoggedInView = props => {
           <Link
             to={`@${props.currentUser.username}`}
             className="nav-link">
-            <img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />
-            {props.currentUser.username}
+            <i className="ion-person"/> {props.currentUser.username}
+            {/*<img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />*/}
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="settings" className="nav-link">
+            <i className="ion-dollar"/> Balance <b>{props.currentUser.balance}</b>
           </Link>
         </li>
 
@@ -70,6 +77,11 @@ const LoggedInView = props => {
 };
 
 class Header extends React.Component {
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <nav className="navbar navbar-light">
