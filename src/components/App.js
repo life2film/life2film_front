@@ -29,12 +29,17 @@ class App extends React.Component {
 
   initUserData = async () => {
     const data = await agent.Auth.current()
-    const address = data.user.bio
-    const balanceData = await agent.Waves.getBalance(address)
+    const address = data.user.wallet_address
+    let balanceData = 0
+
+    try{
+      balanceData = await agent.Waves.getBalance(address)
+    } catch (e) {
+    }
 
     data.user = {
       ...data.user,
-      balance: balanceData.balance,
+      balance: balanceData && balanceData.balance,
     }
     return data
   }

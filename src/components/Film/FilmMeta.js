@@ -7,7 +7,7 @@ const FilmMeta = props => {
   return (
     <div className="film-meta">
       <Link to={`@${film.author.username}`}>
-        <img src={film.author.image} alt={film.author.username} />
+        <img className="film-meta-avatar" src={film.author.image} alt={film.author.username} />
       </Link>
 
       <div className="info">

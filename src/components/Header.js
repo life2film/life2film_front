@@ -41,21 +41,15 @@ const LoggedInView = props => {
           </Link>
         </li>
 
-        {/*<li className="nav-item">*/}
-          {/*<Link to="editor" className="nav-link">*/}
-            {/*<i className="ion-compose"></i>&nbsp;New Post*/}
-          {/*</Link>*/}
-        {/*</li>*/}
-
         <li className="nav-item">
-          <Link to="settings" className="nav-link">
-            <i className="ion-gear-a"></i>&nbsp;Settings
+          <Link to="editor" className="nav-link">
+            <i className="ion-compose"/>&nbsp;New Post
           </Link>
         </li>
 
         <li className="nav-item">
           <Link to="settings" className="nav-link">
-            <i className="ion-coin"></i>&nbsp; {props.currentUser.balance} Balance
+            <i className="ion-gear-a"/>&nbsp;Settings
           </Link>
         </li>
 
@@ -63,9 +57,14 @@ const LoggedInView = props => {
           <Link
             to={`@${props.currentUser.username}`}
             className="nav-link">
-            <i className="ion-person"></i>
+            <i className="ion-person"/> {props.currentUser.username}
             {/*<img src={props.currentUser.image} className="user-pic" alt={props.currentUser.username} />*/}
-            {props.currentUser.username}
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="settings" className="nav-link">
+            <i className="ion-dollar"/> Balance <b>{props.currentUser.balance}</b>
           </Link>
         </li>
 

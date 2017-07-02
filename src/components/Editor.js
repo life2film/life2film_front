@@ -38,6 +38,7 @@ class Editor extends React.Component {
       key => ev => this.props.onUpdateField(key, ev.target.value);
     this.changeTitle = updateFieldEvent('title');
     this.changeDescription = updateFieldEvent('description');
+    this.changeVideoURL = updateFieldEvent('videoUrl');
     this.changeBody = updateFieldEvent('body');
     this.changeTagInput = updateFieldEvent('tagInput');
 
@@ -58,7 +59,8 @@ class Editor extends React.Component {
         title: this.props.title,
         description: this.props.description,
         body: this.props.body,
-        tagList: this.props.tagList
+        tagList: this.props.tagList,
+        url_image: this.props.videoUrl,
       };
 
       const slug = { slug: this.props.filmSlug };
@@ -98,7 +100,7 @@ class Editor extends React.Component {
           <div className="row">
             <div className="col-md-10 offset-md-1 col-xs-12">
 
-              <ListErrors errors={this.props.errors}></ListErrors>
+              <ListErrors errors={this.props.errors}/>
 
               <form>
                 <fieldset>
@@ -122,6 +124,15 @@ class Editor extends React.Component {
                   </fieldset>
 
                   <fieldset className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="URL of video"
+                      value={this.props.videoUrl}
+                      onChange={this.changeVideoURL} />
+                  </fieldset>
+
+                  {/*<fieldset className="form-group">
                     <textarea
                       className="form-control"
                       rows="8"
@@ -129,7 +140,7 @@ class Editor extends React.Component {
                       value={this.props.body}
                       onChange={this.changeBody}>
                     </textarea>
-                  </fieldset>
+                  </fieldset>*/}
 
                   <fieldset className="form-group">
                     <input

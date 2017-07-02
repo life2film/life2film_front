@@ -92,7 +92,7 @@ class Profile extends React.Component {
         <li className="nav-item">
           <Link
             className="nav-link active"
-            to={`@${this.props.profile.username}`}>
+            to={`@${this.props.currentUser.username}`}>
             My Films
           </Link>
         </li>
@@ -100,7 +100,7 @@ class Profile extends React.Component {
         <li className="nav-item">
           <Link
             className="nav-link"
-            to={`@${this.props.profile.username}/favorites`}>
+            to={`@${this.props.currentUser.username}/favorites`}>
             Favorited Films
           </Link>
         </li>
@@ -109,7 +109,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const profile = this.props.profile;
+    const profile = this.props.currentUser;
     if (!profile) {
       return null;
     }

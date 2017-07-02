@@ -17,7 +17,8 @@ class SettingsForm extends React.Component {
       username: '',
       bio: '',
       email: '',
-      password: ''
+      password: '',
+      wallet_address: ''
     };
 
     this.updateState = field => ev => {
@@ -26,7 +27,7 @@ class SettingsForm extends React.Component {
       this.setState(newState);
     };
 
-    this.submitForm = ev => {
+    this.submitForm = async (ev) => {
       ev.preventDefault();
 
       const user = Object.assign({}, this.state);
@@ -34,7 +35,18 @@ class SettingsForm extends React.Component {
         delete user.password;
       }
 
-      this.props.onSubmitForm(user);
+      let data = {}
+
+      try {
+        data = await agent.Auth.save(user)
+      } catch (e) {
+        debugger
+        return
+      }
+
+      // debugger
+
+      this.props.onSubmitForm(user, data);
     };
   }
 
@@ -44,7 +56,8 @@ class SettingsForm extends React.Component {
         image: this.props.currentUser.image || '',
         username: this.props.currentUser.username,
         bio: this.props.currentUser.bio,
-        email: this.props.currentUser.email
+        email: this.props.currentUser.email,
+        wallet_address: this.props.currentUser.wallet_address
       });
     }
   }
@@ -55,7 +68,8 @@ class SettingsForm extends React.Component {
         image: nextProps.currentUser.image || '',
         username: nextProps.currentUser.username,
         bio: nextProps.currentUser.bio,
-        email: nextProps.currentUser.email
+        email: nextProps.currentUser.email,
+        wallet_address: this.props.currentUser.wallet_address
       }));
     }
   }
@@ -83,6 +97,7 @@ class SettingsForm extends React.Component {
               onChange={this.updateState('username')} />
           </fieldset>
 
+          {/*
           <fieldset className="form-group">
             <textarea
               className="form-control form-control-lg"
@@ -91,6 +106,15 @@ class SettingsForm extends React.Component {
               value={this.state.bio}
               onChange={this.updateState('bio')}>
             </textarea>
+          </fieldset>
+          */}
+
+          <fieldset className="form-group">
+            <input
+              className="form-control form-control-lg"
+              placeholder="Wallet Address"
+              value={this.state.wallet_address}
+              onChange={this.updateState('wallet_address')} />
           </fieldset>
 
           <fieldset className="form-group">
@@ -131,8 +155,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onClickLogout: () => dispatch({ type: LOGOUT }),
-  onSubmitForm: user =>
-    dispatch({ type: SETTINGS_SAVED, payload: agent.Auth.save(user) }),
+  onSubmitForm: (user, payload) =>
+    dispatch({ type: SETTINGS_SAVED, payload }),
   onUnload: () => dispatch({ type: SETTINGS_PAGE_UNLOADED })
 });
 
