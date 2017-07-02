@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://127.0.0.1:8000/api';
+const API_ROOT = 'http://api.life2film.com:8000/api';
 
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -24,6 +24,20 @@ const requests = {
     superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody),
   post: (url, body) =>
     superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)
+};
+
+const W_API_ROOT = 'http://52.30.47.67:6869';
+const ASSET_ID = 'GU67LPeJmEfqP7CK3swA994jdhVTzKSKXFrFdSTV5Ck'
+
+const wRequests = {
+  del: url =>
+    superagent.del(`${W_API_ROOT}${url}`).then(responseBody),
+  get: url =>
+    superagent.get(`${W_API_ROOT}${url}`).then(responseBody),
+  put: (url, body) =>
+    superagent.put(`${W_API_ROOT}${url}`, body).then(responseBody),
+  post: (url, body) =>
+    superagent.post(`${W_API_ROOT}${url}`, body).then(responseBody)
 };
 
 const Auth = {
@@ -86,11 +100,16 @@ const Profile = {
     requests.del(`/profiles/${username}/follow`)
 };
 
+const Waves = {
+  getBalance: (address) => wRequests.get('/assets/balance/' + address + '/' + ASSET_ID),
+}
+
 export default {
   Films,
   Auth,
   Comments,
   Profile,
   Tags,
+  Waves,
   setToken: _token => { token = _token; }
 };

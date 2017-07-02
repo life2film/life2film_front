@@ -27,13 +27,25 @@ class App extends React.Component {
     }
   }
 
+  initUserData = async () => {
+    const data = await agent.Auth.current()
+    const address = data.user.bio
+    const balanceData = await agent.Waves.getBalance(address)
+
+    data.user = {
+      ...data.user,
+      balance: balanceData.balance,
+    }
+    return data
+  }
+
   componentWillMount() {
     const token = window.localStorage.getItem('jwt');
     if (token) {
       agent.setToken(token);
     }
 
-    this.props.onLoad(token ? agent.Auth.current() : null, token);
+    this.props.onLoad(token ? this.initUserData() : null, token);
   }
 
   render() {
