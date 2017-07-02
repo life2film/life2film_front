@@ -43,7 +43,8 @@ const LoggedInView = props => {
 
         <li className="nav-item">
           <Link to="editor" className="nav-link">
-            <i className="ion-compose"/>&nbsp;New Post
+            {/*<i className="ion-compose"/>&nbsp;New Post*/}
+            <i className="ion-compose"></i>&nbsp;New Video
           </Link>
         </li>
 

@@ -24,6 +24,26 @@ const YourFeedTab = props => {
   return null;
 };
 
+const MyFilmsTab = props => {
+    if (props.token) {
+        const clickHandler = ev => {
+            ev.preventDefault();
+            props.onTabClick('myfilms', agent.Films.byAuthor, agent.Films.byAuthor(''));
+        };
+
+        return (
+            <li className="nav-item">
+              <a  href=""
+                  className={ props.tab === 'myfilms' ? 'nav-link active' : 'nav-link' }
+                  onClick={clickHandler}>
+                My films
+              </a>
+            </li>
+        );
+    }
+    return null;
+};
+
 const GlobalFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
@@ -70,6 +90,7 @@ const MainView = props => {
     <div className="col-md-9">
       <div className="feed-toggle">
         <ul className="nav nav-pills outline-active">
+          <MyFilmsTab token={props.token} tab={props.tab} onTabClick={props.onTabClick} />
           <YourFeedTab token={props.token} tab={props.tab} onTabClick={props.onTabClick} />
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
         </ul>
